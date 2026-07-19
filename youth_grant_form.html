@@ -1,0 +1,777 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Bequest Youth Grant Application – League of Women Voters of Diablo Valley</title>
+  <style>
+    *,
+    *::before,
+    *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: Georgia, 'Times New Roman', serif;
+      background: #f4f6f9;
+      color: #1a2a3a;
+      min-height: 100vh;
+      padding: 2rem 1rem;
+    }
+
+    .page {
+      max-width: 720px;
+      margin: 0 auto;
+    }
+
+    header {
+      background: #4b2e83;
+      color: #fff;
+      border-radius: 10px 10px 0 0;
+      padding: 2rem 2.5rem 1.5rem;
+      text-align: center;
+    }
+
+    header .org {
+      font-size: 13px;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      opacity: 0.8;
+      margin-bottom: 0.4rem;
+    }
+
+    header h1 {
+      font-size: 1.75rem;
+      font-weight: 700;
+      line-height: 1.3;
+    }
+
+    header .tagline {
+      font-size: 14px;
+      margin-top: 0.6rem;
+      opacity: 0.85;
+      font-style: italic;
+    }
+
+    .form-body {
+      background: #fff;
+      border: 1px solid #dde2ea;
+      border-top: none;
+      border-radius: 0 0 10px 10px;
+      padding: 2rem 2.5rem 2.5rem;
+    }
+
+    .intro {
+      background: #eef3fb;
+      border-left: 4px solid #4b2e83;
+      border-radius: 4px;
+      padding: 1rem 1.25rem;
+      font-size: 14px;
+      line-height: 1.7;
+      color: #2c3e50;
+      margin-bottom: 2rem;
+    }
+
+    .section-title {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: #4b2e83;
+      border-bottom: 2px solid #4b2e83;
+      padding-bottom: 0.4rem;
+      margin: 2rem 0 1.25rem;
+    }
+
+    .field-grid {
+      display: grid;
+      gap: 1rem;
+    }
+
+    .two-col {
+      grid-template-columns: 1fr 1fr;
+    }
+
+    @media (max-width: 540px) {
+      .two-col {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .field {
+      display: flex;
+      flex-direction: column;
+      gap: 0.35rem;
+    }
+
+    label {
+      font-size: 13px;
+      font-weight: 600;
+      color: #2c3e50;
+      font-family: Arial, sans-serif;
+    }
+
+    label .req {
+      color: #c0392b;
+      margin-left: 2px;
+    }
+
+    input[type="text"],
+    input[type="email"],
+    input[type="tel"],
+    input[type="number"],
+    textarea,
+    select {
+      font-family: Arial, sans-serif;
+      font-size: 14px;
+      padding: 0.55rem 0.75rem;
+      border: 1px solid #c5cdd8;
+      border-radius: 6px;
+      background: #fff;
+      color: #1a2a3a;
+      transition: border-color 0.15s;
+      width: 100%;
+    }
+
+    input:focus,
+    textarea:focus,
+    select:focus {
+      outline: none;
+      border-color: #4b2e83;
+      box-shadow: 0 0 0 3px rgba(75, 46, 131, 0.12);
+    }
+
+    textarea {
+      resize: vertical;
+      line-height: 1.6;
+    }
+
+    .or-divider {
+      text-align: center;
+      font-size: 12px;
+      color: #99a;
+      margin: 0.6rem 0;
+      font-family: Arial, sans-serif;
+    }
+
+    .deadline-box {
+      background: #fff8e1;
+      border: 1px solid #f0c040;
+      border-radius: 8px;
+      padding: 1rem 1.25rem;
+      margin-top: 2rem;
+      font-family: Arial, sans-serif;
+      font-size: 14px;
+      color: #5a4000;
+    }
+
+    .deadline-box strong {
+      display: block;
+      margin-bottom: 0.25rem;
+      color: #3a2800;
+      font-size: 15px;
+    }
+
+    .contact-box {
+      margin-top: 1rem;
+      font-size: 13px;
+      font-family: Arial, sans-serif;
+      color: #556;
+    }
+
+    .contact-box a {
+      color: #4b2e83;
+    }
+
+    .submit-btn {
+      display: block;
+      width: 100%;
+      margin-top: 2rem;
+      padding: 0.85rem;
+      background: #4b2e83;
+      color: #fff;
+      font-family: Arial, sans-serif;
+      font-size: 15px;
+      font-weight: 700;
+      letter-spacing: 0.04em;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: background 0.15s;
+    }
+
+    .submit-btn:hover {
+      background: #331f5c;
+    }
+
+    .submit-btn:disabled {
+      background: #7a9abf;
+      cursor: not-allowed;
+    }
+
+    .success-msg {
+      display: none;
+      background: #e8f5e9;
+      border: 1px solid #81c784;
+      border-radius: 8px;
+      padding: 1.25rem;
+      text-align: center;
+      font-family: Arial, sans-serif;
+      color: #2e7d32;
+      font-size: 15px;
+      margin-top: 1rem;
+    }
+
+    .error-banner {
+      display: none;
+      background: #fdecea;
+      border: 1px solid #f5c6cb;
+      border-radius: 8px;
+      padding: 1rem 1.25rem;
+      font-family: Arial, sans-serif;
+      font-size: 14px;
+      color: #b71c1c;
+      margin-top: 1rem;
+    }
+
+    .field-err {
+      font-size: 12px;
+      color: #c0392b;
+      font-family: Arial, sans-serif;
+      display: none;
+      margin-top: 2px;
+    }
+
+    input.invalid,
+    textarea.invalid {
+      border-color: #c0392b;
+    }
+
+    .spinner {
+      display: inline-block;
+      width: 16px;
+      height: 16px;
+      border: 2px solid #fff;
+      border-top-color: transparent;
+      border-radius: 50%;
+      animation: spin 0.7s linear infinite;
+      vertical-align: middle;
+      margin-right: 8px;
+    }
+
+    @keyframes spin {
+      to {
+        transform: rotate(360deg);
+      }
+    }
+
+    .guidelines-link {
+      display: inline-block;
+      margin-top: 0.75rem;
+      font-family: Arial, sans-serif;
+      font-size: 13px;
+      font-weight: 700;
+      color: #4b2e83;
+      text-decoration: underline;
+      cursor: pointer;
+      background: none;
+      border: none;
+      padding: 0;
+    }
+
+    .guidelines-link:hover {
+      color: #331f5c;
+    }
+
+    .modal-overlay {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(20, 20, 30, 0.55);
+      z-index: 1000;
+      justify-content: center;
+      align-items: flex-start;
+      padding: 3rem 1rem;
+      overflow-y: auto;
+    }
+
+    .modal-overlay.open {
+      display: flex;
+    }
+
+    .modal-box {
+      background: #fff;
+      border-radius: 10px;
+      max-width: 640px;
+      width: 100%;
+      max-height: 85vh;
+      display: flex;
+      flex-direction: column;
+      box-shadow: 0 10px 40px rgba(0, 0, 0, 0.25);
+    }
+
+    .modal-header {
+      background: #4b2e83;
+      color: #fff;
+      border-radius: 10px 10px 0 0;
+      padding: 1.25rem 1.75rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .modal-header h2 {
+      font-size: 1.15rem;
+      font-weight: 700;
+    }
+
+    .modal-close {
+      background: none;
+      border: none;
+      color: #fff;
+      font-size: 1.5rem;
+      line-height: 1;
+      cursor: pointer;
+      padding: 0 0.25rem;
+    }
+
+    .modal-close:hover {
+      opacity: 0.75;
+    }
+
+    .modal-body {
+      padding: 1.5rem 1.75rem;
+      overflow-y: auto;
+      font-family: Arial, sans-serif;
+      font-size: 14px;
+      line-height: 1.7;
+      color: #2c3e50;
+    }
+
+    .modal-body h3 {
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: #4b2e83;
+      margin: 1.25rem 0 0.5rem;
+    }
+
+    .modal-body h3:first-child {
+      margin-top: 0;
+    }
+
+    .modal-body ul {
+      padding-left: 1.25rem;
+      margin-top: 0.25rem;
+    }
+
+    .modal-body li {
+      margin-bottom: 0.35rem;
+    }
+
+    .modal-footer {
+      padding: 1rem 1.75rem 1.5rem;
+      border-top: 1px solid #e5e8ee;
+    }
+
+    .modal-footer button {
+      width: 100%;
+      padding: 0.7rem;
+      background: #4b2e83;
+      color: #fff;
+      font-family: Arial, sans-serif;
+      font-weight: 700;
+      font-size: 14px;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+    }
+
+    .modal-footer button:hover {
+      background: #331f5c;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="page">
+    <header>
+      <div class="org">League of Women Voters of Diablo Valley</div>
+      <h1>Bequest Youth Grant Application</h1>
+      <div class="tagline">Supporting young leaders and their community projects</div>
+    </header>
+
+    <div class="form-body">
+
+
+      <div class="intro">
+        The League of Women Voters of Diablo Valley will award a grant to qualified candidates who (1) meet the criteria
+        listed in the Guidelines and (2) demonstrate in their application the capacity to conduct and complete the
+        proposed project.
+        <br>
+        <button type="button" class="guidelines-link" id="openGuidelines">📄 View Full Guidelines</button>
+      </div>
+
+      <form id="grantForm" novalidate>
+
+        <div class="section-title">Personal Information</div>
+        <div class="field">
+          <label for="name">Full Name <span class="req">*</span></label>
+          <input type="text" id="name" placeholder="First and last name" required>
+          <span class="field-err" id="name-err">Please enter your full name.</span>
+        </div>
+
+        <div class="field" style="margin-top:1rem;">
+          <label for="address">Address <span class="req">*</span></label>
+          <input type="text" id="address" placeholder="Street address" required>
+          <span class="field-err" id="address-err">Please enter your address.</span>
+        </div>
+
+        <div class="field-grid two-col" style="margin-top:1rem;">
+          <div class="field">
+            <label for="city">City <span class="req">*</span></label>
+            <input type="text" id="city" placeholder="City" required>
+            <span class="field-err" id="city-err">Please enter the city.</span>
+          </div>
+          <div class="field">
+            <label for="state">State <span class="req">*</span></label>
+            <select id="state" required>
+              <option value="Alabama">Alabama</option>
+              <option value="Alaska">Alaska</option>
+              <option value="Arizona">Arizona</option>
+              <option value="Arkansas">Arkansas</option>
+              <option value="California" selected>California</option>
+              <option value="Colorado">Colorado</option>
+              <option value="Connecticut">Connecticut</option>
+              <option value="Delaware">Delaware</option>
+              <option value="Florida">Florida</option>
+              <option value="Georgia">Georgia</option>
+              <option value="Hawaii">Hawaii</option>
+              <option value="Idaho">Idaho</option>
+              <option value="Illinois">Illinois</option>
+              <option value="Indiana">Indiana</option>
+              <option value="Iowa">Iowa</option>
+              <option value="Kansas">Kansas</option>
+              <option value="Kentucky">Kentucky</option>
+              <option value="Louisiana">Louisiana</option>
+              <option value="Maine">Maine</option>
+              <option value="Maryland">Maryland</option>
+              <option value="Massachusetts">Massachusetts</option>
+              <option value="Michigan">Michigan</option>
+              <option value="Minnesota">Minnesota</option>
+              <option value="Mississippi">Mississippi</option>
+              <option value="Missouri">Missouri</option>
+              <option value="Montana">Montana</option>
+              <option value="Nebraska">Nebraska</option>
+              <option value="Nevada">Nevada</option>
+              <option value="New Hampshire">New Hampshire</option>
+              <option value="New Jersey">New Jersey</option>
+              <option value="New Mexico">New Mexico</option>
+              <option value="New York">New York</option>
+              <option value="North Carolina">North Carolina</option>
+              <option value="North Dakota">North Dakota</option>
+              <option value="Ohio">Ohio</option>
+              <option value="Oklahoma">Oklahoma</option>
+              <option value="Oregon">Oregon</option>
+              <option value="Pennsylvania">Pennsylvania</option>
+              <option value="Rhode Island">Rhode Island</option>
+              <option value="South Carolina">South Carolina</option>
+              <option value="South Dakota">South Dakota</option>
+              <option value="Tennessee">Tennessee</option>
+              <option value="Texas">Texas</option>
+              <option value="Utah">Utah</option>
+              <option value="Vermont">Vermont</option>
+              <option value="Virginia">Virginia</option>
+              <option value="Washington">Washington</option>
+              <option value="West Virginia">West Virginia</option>
+              <option value="Wisconsin">Wisconsin</option>
+              <option value="Wyoming">Wyoming</option>
+            </select>
+            <span class="field-err" id="state-err">Please select a state.</span>
+          </div>
+        </div>
+
+        <div class="field-grid two-col" style="margin-top:1rem;">
+          <div class="field">
+            <label for="zip">Zip Code <span class="req">*</span></label>
+            <input type="text" id="zip" inputmode="numeric" pattern="[0-9]{5}" maxlength="5" placeholder="e.g. 94526"
+              required>
+            <span class="field-err" id="zip-err">Please enter a valid 5-digit zip code.</span>
+          </div>
+          <div class="field">
+            <label for="age">Age <span class="req">*</span></label>
+            <input type="number" id="age" min="13" max="25" placeholder="e.g. 17" required>
+            <span class="field-err" id="age-err">Please enter your age.</span>
+          </div>
+        </div>
+
+        <div class="field-grid two-col" style="margin-top:1rem;">
+          <div class="field">
+            <label for="phone">Phone Number <span class="req">*</span></label>
+            <input type="tel" id="phone" placeholder="(925) 555-0100" required>
+            <span class="field-err" id="phone-err">Please enter a phone number.</span>
+          </div>
+          <div class="field">
+            <label for="email">Email Address <span class="req">*</span></label>
+            <input type="email" id="email" placeholder="you@email.com" required>
+            <span class="field-err" id="email-err">Please enter a valid email.</span>
+          </div>
+        </div>
+
+        <div class="field" style="margin-top:1rem;">
+          <label for="interest">Primary Career / Professional Interest <span class="req">*</span></label>
+          <input type="text" id="interest" placeholder="e.g. Environmental Science, Public Health, Civic Engagement…"
+            required>
+          <span class="field-err" id="interest-err">Please enter your primary career / professional interest.</span>
+        </div>
+
+        <div class="section-title">Project Proposal</div>
+        <p style="font-size:13px; font-family:Arial,sans-serif; color:#556; margin-bottom:1rem; line-height:1.6;">
+          Using the attached template as a guide, describe your project. State the amount of funding requested and how
+          it would be spent. Paste a Google Doc or Drive link below.
+        </p>
+        <div class="field">
+          <label for="proposalLink">Proposal Link <span class="req">*</span> <span
+              style="font-weight:400;color:#778;">(Google Doc or Drive)</span></label>
+          <input type="text" id="proposalLink" placeholder="https://docs.google.com/...">
+          <span class="field-err" id="proposal-err">Please provide a proposal link.</span>
+        </div>
+
+        <div class="section-title">Letters of Reference</div>
+        <p style="font-size:13px; font-family:Arial,sans-serif; color:#556; margin-bottom:1rem; line-height:1.6;">
+          Two letters of reference from teachers, mentors, or advisors, not to exceed one page each. Paste Google Doc or
+          Drive links.
+        </p>
+        <div class="field-grid two-col">
+          <div class="field">
+            <label for="ref1Link">Reference Letter 1 <span class="req">*</span></label>
+            <input type="text" id="ref1Link" placeholder="https://docs.google.com/...">
+            <span class="field-err" id="ref1-err">Please provide reference letter 1.</span>
+          </div>
+          <div class="field">
+            <label for="ref2Link">Reference Letter 2 <span class="req">*</span></label>
+            <input type="text" id="ref2Link" placeholder="https://docs.google.com/...">
+            <span class="field-err" id="ref2-err">Please provide reference letter 2.</span>
+          </div>
+        </div>
+
+        <div class="section-title">Additional Information</div>
+        <div class="field">
+          <label for="description">Description <span style="font-weight:400;color:#778;">(optional)</span></label>
+          <textarea id="description" rows="4"
+            placeholder="Any additional context or notes you'd like to share…"></textarea>
+        </div>
+
+        <div class="deadline-box">
+          <strong>⏰ Submission Deadline</strong>
+          Applications must be received no later than <strong>5:00 PM on [DATE]</strong>. Submissions must be made
+          electronically via this form.
+        </div>
+
+        <div class="contact-box">
+          Questions? Contact: <a href="mailto:youth@lwvdv.org">[Youth Program Committee Contact — TBD]</a>
+        </div>
+
+        <button type="submit" class="submit-btn" id="submitBtn">Submit Application</button>
+        <div class="success-msg" id="successMsg">
+          ✅ Your application has been submitted! Thank you for applying. You will receive a confirmation email shortly.
+        </div>
+        <div class="error-banner" id="errorBanner">
+          ⚠️ There was a problem submitting your application. Please try again or contact us directly.
+        </div>
+
+      </form>
+    </div>
+  </div>
+
+  <div class="modal-overlay" id="guidelinesModal">
+    <div class="modal-box">
+      <div class="modal-header">
+        <h2>2026–2027 Lee Lawrence Youth Grant Program Guidelines</h2>
+        <button type="button" class="modal-close" id="closeGuidelines" aria-label="Close">&times;</button>
+      </div>
+      <div class="modal-body">
+        <p>The League of Women Voters of Diablo Valley is a non-partisan organization whose mission is to educate,
+          inform and encourage civic engagement and to increase understanding of major public policy issues at all
+          levels of government.</p>
+        <p style="margin-top:0.75rem;">The Diablo Valley League established the Lee Lawrence Youth Grant Program from
+          her bequest as a commemoration of Ms. Lawrence's life-long dedication to &ldquo;making democracy work&rdquo;
+          and to youth engagement.</p>
+
+        <h3>Grant</h3>
+        <ul>
+          <li>The maximum grant for the funding period of (enter start &amp; end dates) will be $_______.</li>
+          <li>A total of ________ grants are expected to be awarded.</li>
+          <li>Grant funds are expected to be used solely for the purposes of the approved project. Any unexpended funds
+            shall be returned to the League.</li>
+        </ul>
+
+        <h3>Award Announcement</h3>
+        <ul>
+          <li>Selected applicants will be notified by (enter date) via email and letter to the contact information
+            provided in the application.</li>
+        </ul>
+
+        <h3>Eligibility Criteria</h3>
+        <ul>
+          <li>Applicants must be between the ages of 18 and 24 and able to demonstrate the capacity to complete the
+            project being proposed.</li>
+          <li>The applicant must include with the application two letters of reference, which may be from teachers,
+            mentors, advisors, or employers, not exceeding one page each.</li>
+        </ul>
+
+        <h3>Selection Criteria</h3>
+        <p>Grants will be awarded to applicants whose proposal best meets the following criteria:</p>
+        <ul>
+          <li>Meets the Eligibility Criteria.</li>
+          <li>Proposes a project that directly supports the work of the League of Women Voters Diablo Valley to educate,
+            inform and encourage civic engagement aimed at &ldquo;making democracy work,&rdquo; and to increase
+            understanding of major public policy issues at all levels of government.</li>
+          <li>Provides a proposal that shows how the project will be organized and completed within a reasonable
+            timeframe and shows how the grant funding will support this plan.</li>
+          <li>Proposal includes a commitment to provide a final report to the League on the outcome of the funded
+            project within 30 days and include a basic accounting with appropriate receipts of how the funds were
+            expended.</li>
+        </ul>
+        <p style="margin-top:0.75rem;">Applications will be evaluated by the Diablo Valley Youth Grant Program Committee
+          and approved by the LWVDV Board of Directors.</p>
+
+        <h3>Deadline &amp; Submission</h3>
+        <ul>
+          <li>Applications must be received no later than 5:00pm on (enter date).</li>
+          <li>Applications must be completed and submitted electronically at (insert link).</li>
+        </ul>
+
+        <h3>Questions</h3>
+        <ul>
+          <li>Please contact (to be set by Youth Grant Program Committee).</li>
+        </ul>
+      </div>
+      <div class="modal-footer">
+        <button type="button" id="closeGuidelinesBottom">Close</button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const guidelinesModal = document.getElementById('guidelinesModal');
+    const openGuidelines = document.getElementById('openGuidelines');
+    const closeGuidelines = document.getElementById('closeGuidelines');
+    const closeGuidelinesBottom = document.getElementById('closeGuidelinesBottom');
+
+    function openModal() {
+      guidelinesModal.classList.add('open');
+      document.body.style.overflow = 'hidden';
+    }
+    function closeModal() {
+      guidelinesModal.classList.remove('open');
+      document.body.style.overflow = '';
+    }
+
+    openGuidelines.addEventListener('click', openModal);
+    closeGuidelines.addEventListener('click', closeModal);
+    closeGuidelinesBottom.addEventListener('click', closeModal);
+    guidelinesModal.addEventListener('click', function (e) {
+      if (e.target === guidelinesModal) closeModal();
+    });
+    document.addEventListener('keydown', function (e) {
+      if (e.key === 'Escape' && guidelinesModal.classList.contains('open')) closeModal();
+    });
+
+    const fields = [
+      { id: 'name', err: 'name-err' },
+      { id: 'age', err: 'age-err' },
+      { id: 'address', err: 'address-err' },
+      { id: 'phone', err: 'phone-err' },
+      { id: 'email', err: 'email-err' },
+      { id: 'city', err: 'city-err' },
+      { id: 'state', err: 'state-err' },
+      { id: 'zip', err: 'zip-err' },
+      { id: 'interest', err: 'interest-err' },
+      { id: 'proposalLink', err: 'proposal-err' },
+      { id: 'ref1Link', err: 'ref1-err' },
+      { id: 'ref2Link', err: 'ref2-err' },
+    ];
+
+    function validate() {
+      let ok = true;
+      fields.forEach(f => {
+        const el = document.getElementById(f.id);
+        const err = document.getElementById(f.err);
+        if (!el.value.trim()) {
+          el.classList.add('invalid');
+          err.style.display = 'block';
+          ok = false;
+        } else {
+          el.classList.remove('invalid');
+          err.style.display = 'none';
+        }
+      });
+      const emailEl = document.getElementById('email');
+      if (emailEl.value.trim() && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(emailEl.value)) {
+        emailEl.classList.add('invalid');
+        document.getElementById('email-err').textContent = 'Please enter a valid email address.';
+        document.getElementById('email-err').style.display = 'block';
+        ok = false;
+      }
+      const zipEl = document.getElementById('zip');
+      if (zipEl.value.trim() && !/^\d{5}$/.test(zipEl.value.trim())) {
+        zipEl.classList.add('invalid');
+        document.getElementById('zip-err').textContent = 'Zip code must be exactly 5 digits.';
+        document.getElementById('zip-err').style.display = 'block';
+        ok = false;
+      }
+      return ok;
+    }
+
+    document.getElementById('grantForm').addEventListener('submit', async function (e) {
+      e.preventDefault();
+      document.getElementById('errorBanner').style.display = 'none';
+      if (!validate()) return;
+
+      const scriptUrl = "https://script.google.com/macros/s/AKfycbypuB4mwTm86HuaaG0fgUrFfhiDN8Cs-JB_lBzZjYBQ-COvNU2aBCy8aAy2zLu1p_M_Cg/exec";
+
+      const btn = document.getElementById('submitBtn');
+      btn.disabled = true;
+      btn.innerHTML = '<span class="spinner"></span>Submitting…';
+
+      const payload = {
+        timestamp: new Date().toLocaleString(),
+        name: document.getElementById('name').value.trim(),
+        age: document.getElementById('age').value.trim(),
+        address: document.getElementById('address').value.trim(),
+        phone: document.getElementById('phone').value.trim(),
+        email: document.getElementById('email').value.trim(),
+        city: document.getElementById('city').value.trim(),
+        state: document.getElementById('state').value,
+        zip: document.getElementById('zip').value.trim(),
+        interest: document.getElementById('interest').value.trim(),
+        proposalLink: document.getElementById('proposalLink').value.trim(),
+        ref1Link: document.getElementById('ref1Link').value.trim(),
+        ref2Link: document.getElementById('ref2Link').value.trim(),
+        description: document.getElementById('description').value.trim(),
+      };
+
+      try {
+        await fetch(scriptUrl, {
+          method: 'POST',
+          mode: 'no-cors',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(payload),
+        });
+        document.getElementById('successMsg').style.display = 'block';
+        btn.textContent = 'Submitted ✔';
+      } catch (err) {
+        document.getElementById('errorBanner').style.display = 'block';
+        btn.disabled = false;
+        btn.textContent = 'Submit Application';
+      }
+    });
+  </script>
+</body>
+
+</html>
